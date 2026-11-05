@@ -1,0 +1,426 @@
+/* Page du test fermé de Tinker Towers : test.html (anglais) et test-fr.html (français).
+   HTML et CSS seuls : aucun script, aucune ressource externe, aucun outil de mesure.
+   Polices sous licence SIL Open Font License 1.1 : fonts/OFL-lilita-one.txt, fonts/OFL-nunito.txt. */
+
+@font-face {
+  font-family: "Lilita One";
+  font-weight: 400;
+  font-display: swap;
+  src: url(fonts/lilita-one-latin-400-normal.woff2) format("woff2");
+}
+@font-face {
+  font-family: Nunito;
+  font-weight: 700;
+  font-display: swap;
+  src: url(fonts/nunito-latin-700-normal.woff2) format("woff2");
+}
+@font-face {
+  font-family: Nunito;
+  font-weight: 900;
+  font-display: swap;
+  src: url(fonts/nunito-latin-900-normal.woff2) format("woff2");
+}
+
+:root {
+  --bleu: #2f7be5;
+  --bleu-fonce: #1a5bb8;
+  --bleu-pale: #e6f0fe;
+  --orange: #ff8a2a;
+  --orange-fonce: #c9621a;
+  --or: #ffc83d;
+  --or-fonce: #d99a1c;
+  --encre: #3a1d0c;
+  --encre-douce: #66452e;
+  --creme: #fff8ea;
+  --trait: #f0e3c8;
+  --titres: "Lilita One", "Trebuchet MS", sans-serif;
+  color-scheme: only light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--bleu);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--encre);
+  font: 700 17px/1.5 Nunito, "Segoe UI", Roboto, sans-serif;
+}
+
+a {
+  color: var(--bleu-fonce);
+}
+
+a:focus-visible {
+  outline: 3px solid var(--encre);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-family: var(--titres);
+  font-weight: 400;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+b {
+  font-weight: 900;
+}
+
+/* Une seule colonne, du téléphone à l'ordinateur. */
+.page {
+  margin: 0 auto;
+}
+
+/* Image de présentation et choix de la langue. La bande verte sous l'image, de la couleur de l'herbe, comble les coins arrondis
+   de la feuille. */
+.haut {
+  position: relative;
+  padding-bottom: 16px;
+  background: #4a812a;
+}
+
+.haut > picture img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.langue {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 6px 11px;
+  border-radius: 999px;
+  background: var(--creme);
+  color: var(--encre);
+  font-size: 14px;
+  font-weight: 900;
+  line-height: 1.3;
+  text-decoration: none;
+  box-shadow: 0 2px 0 rgba(58, 29, 12, 0.3);
+}
+
+/* Agrandit la zone de toucher à 48 px sans grossir la pastille. */
+.langue::after {
+  content: "";
+  position: absolute;
+  inset: -9px -6px;
+}
+
+/* Feuille crème, posée sur le bas de l'image sans couper les créatures. */
+.feuille {
+  position: relative;
+  margin-top: calc(-16px - 3%);
+  padding: 0 18px 8px;
+  border-radius: 24px 24px 0 0;
+  background: var(--creme);
+}
+
+.jeu {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.icone {
+  flex: none;
+  display: block;
+  width: 84px;
+  height: 84px;
+  margin-top: -30px;
+  border: 4px solid #fff;
+  border-radius: 22px;
+  box-shadow: 0 4px 12px rgba(58, 29, 12, 0.28);
+}
+
+h1 {
+  font-size: clamp(29px, 9.4vw, 38px);
+  padding-bottom: 2px;
+}
+
+.accroche {
+  margin-top: 14px;
+  font-size: 19px;
+  line-height: 1.4;
+}
+
+.seul {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 5px 13px;
+  border-radius: 14px;
+  background: var(--or);
+  font-size: 15px;
+  font-weight: 900;
+  line-height: 1.3;
+}
+
+/* Sections. */
+h2 {
+  color: var(--bleu-fonce);
+  font-size: clamp(24px, 7vw, 27px);
+}
+
+.essai {
+  margin-top: 30px;
+}
+
+.essai > p {
+  margin-top: 8px;
+}
+
+.astuce {
+  margin-top: 14px !important;
+  padding: 11px 14px;
+  border-radius: 14px;
+  background: var(--bleu-pale);
+  font-size: 15.5px;
+  line-height: 1.4;
+}
+
+/* Les trois étapes, reliées comme les niveaux sur la carte du jeu. */
+.etapes {
+  counter-reset: etape;
+  display: grid;
+  gap: 24px;
+  margin: 22px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.etapes > li {
+  counter-increment: etape;
+  position: relative;
+  display: grid;
+  grid-template-columns: 46px minmax(0, 1fr);
+  align-items: center;
+  column-gap: 12px;
+  padding: 16px;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 3px 0 var(--trait), 0 8px 18px rgba(58, 29, 12, 0.08);
+}
+
+.etapes > li::before {
+  content: counter(etape);
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--or);
+  box-shadow: 0 3px 0 var(--or-fonce);
+  font: 400 26px/46px var(--titres);
+  text-align: center;
+}
+
+.etapes > li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 37px;
+  bottom: -24px;
+  height: 24px;
+  border-left: 5px dotted var(--or);
+}
+
+h3 {
+  font-size: 23px;
+}
+
+.etapes p {
+  grid-column: 1 / -1;
+  margin-top: 10px;
+  font-size: 16px;
+  line-height: 1.45;
+  color: var(--encre-douce);
+}
+
+.etapes b {
+  color: var(--encre);
+}
+
+/* Les grands boutons. */
+.bouton {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 58px;
+  margin-top: 14px;
+  padding: 12px 18px;
+  border-radius: 16px;
+  background: var(--orange);
+  box-shadow: 0 4px 0 var(--orange-fonce);
+  color: var(--encre);
+  font-size: clamp(17px, 4.9vw, 19px);
+  font-weight: 900;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+}
+
+.bouton::after {
+  content: "";
+  flex: none;
+  width: 9px;
+  height: 9px;
+  border-top: 3px solid currentColor;
+  border-right: 3px solid currentColor;
+  transform: rotate(45deg);
+}
+
+.bouton:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 var(--orange-fonce);
+}
+
+@media (hover: hover) {
+  .bouton:hover {
+    background: #ff9a45;
+  }
+}
+
+/* Petite note. */
+.note {
+  margin-top: 26px;
+  font-size: 15.5px;
+  line-height: 1.45;
+  color: var(--encre-douce);
+}
+
+.note h2 {
+  color: var(--encre);
+  font-family: Nunito, "Segoe UI", Roboto, sans-serif;
+  font-size: 15.5px;
+  font-weight: 900;
+  line-height: 1.45;
+}
+
+.note ul {
+  margin: 4px 0 8px;
+  padding: 0;
+  list-style: none;
+}
+
+.note li {
+  position: relative;
+  padding-left: 18px;
+}
+
+.note li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 0.5em;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--orange);
+}
+
+/* Avis. */
+.avis {
+  margin-top: 32px;
+}
+
+.avis p {
+  margin-top: 8px;
+}
+
+.courriel {
+  overflow-wrap: anywhere;
+}
+
+/* Pied de page. */
+.bas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0 18px;
+  margin-top: 26px;
+  padding-top: 8px;
+  border-top: 2px solid var(--trait);
+  font-size: 15px;
+}
+
+.bas a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+}
+
+/* Très petits téléphones : la pastille de langue ne touche pas le logo. */
+@media (max-width: 349px) {
+  .langue {
+    top: 6px;
+    right: 6px;
+    padding: 6px 9px;
+    font-size: 13px;
+  }
+
+  .langue::after {
+    inset: -10px -6px;
+  }
+
+  .icone {
+    width: 72px;
+    height: 72px;
+    border-radius: 18px;
+  }
+}
+
+@media (min-width: 420px) {
+  .langue {
+    top: 10px;
+    right: 10px;
+    padding: 7px 14px;
+    font-size: 15px;
+  }
+
+  .langue::after {
+    inset: -7px -6px;
+  }
+}
+
+/* Ordinateur : la même colonne, posée sur le ciel. */
+@media (min-width: 600px) {
+  html {
+    background: linear-gradient(180deg, #2f7be5 0, #5b9ff0 45%, #a9d3f8 100%) no-repeat;
+    background-color: #a9d3f8;
+  }
+
+  body {
+    padding: 32px 0 48px;
+  }
+
+  .page {
+    overflow: hidden;
+    max-width: 540px;
+    border-radius: 28px;
+    background: var(--creme);
+    box-shadow: 0 20px 50px rgba(16, 58, 128, 0.35);
+  }
+
+  .feuille {
+    padding: 0 28px 10px;
+  }
+
+  h1 {
+    font-size: 40px;
+  }
+}
